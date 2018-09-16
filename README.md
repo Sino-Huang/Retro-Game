@@ -15,7 +15,7 @@ _Add a paragraph the gives a summary of the game you implemented. Include a smal
 + [Testing Summary](testingsummary)
 
 ## Minuted Meetings
-+ [Meeting 1 - date - decide team structure and game](meeting1)
++ [Meeting 1 - date - decide team structure and game](./Meeting1.md)
 + [Meeting 2 - date - divide up tasks](meeting2)
 + [Meeting 3 - date - consider and plan extension aspects](meeting3)
 + [Meeting 4 - date - review and practice demo](meeting4)
