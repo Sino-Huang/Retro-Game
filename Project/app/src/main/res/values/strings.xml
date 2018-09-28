@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">God_of_Hand</string>
+    <string name="god_of_hand">God of Hand</string>
+    <string name="input_username">Input username</string>
+    <string name="start">Start</string>
 </resources>
