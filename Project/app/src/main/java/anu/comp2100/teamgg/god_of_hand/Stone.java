@@ -12,15 +12,15 @@ public class Stone extends Sprite {
 
     public Stone(Context context, int i){
         if (i == 1){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.Stone1);
+            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone1);
         }else if (i == 2){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.Stone2);
+            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone2);
         }else if (i == 3){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.Stone3);
+            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone3);
         }else if (i == 4){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.Stone4);
+            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone4);
         }else if (i == 5){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.Stone5);
+            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone5);
         }
     }
 
