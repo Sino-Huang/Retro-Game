@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class Playeregg extends Sprite implements View.OnTouchListener {
+public abstract class Playeregg extends Sprite {
 
     Bitmap egg;
 
@@ -37,8 +37,9 @@ public class Playeregg extends Sprite implements View.OnTouchListener {
 
     }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        return false;
-    }
+    public abstract void pressed();
+
+    public abstract void unpressed();
+
+
 }
