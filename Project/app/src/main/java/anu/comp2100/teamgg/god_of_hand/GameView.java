@@ -53,6 +53,9 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     }
 
     public boolean collisionCheck() {
+
+
+
         return false;
     }
 }

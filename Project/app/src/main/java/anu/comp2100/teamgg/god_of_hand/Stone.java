@@ -9,8 +9,11 @@ import android.graphics.Paint;
 public class Stone extends Sprite {
 
     Bitmap stoneImage;
+    int i;
 
     public Stone(Context context, int i){
+        this.i = i;
+
         if (i == 1){
             this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone1);
         }else if (i == 2){
@@ -30,7 +33,7 @@ public class Stone extends Sprite {
 
     @Override
     public void run() {
-
+        this.item.Y += 1;
     }
 
     @Override

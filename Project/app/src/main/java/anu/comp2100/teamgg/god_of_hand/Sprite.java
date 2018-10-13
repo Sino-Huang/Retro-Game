@@ -5,6 +5,7 @@ import android.graphics.Paint;
 
 public abstract class Sprite {
     Item item;
+    int line;
 
     public abstract void run();
 

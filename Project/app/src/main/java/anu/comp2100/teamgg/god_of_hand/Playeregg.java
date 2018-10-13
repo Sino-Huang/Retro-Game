@@ -8,21 +8,36 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
-public abstract class Playeregg extends Sprite {
+public class Playeregg extends Sprite {
 
     Bitmap egg;
+    int ID;
+    float distance;
+    boolean left;
+    float width = GameActivity.screenWidth;
+    float height = GameActivity.screenHight;
 
-    public Playeregg(float x, float y, float width, float height){
+    public Playeregg(float x, float y, float width, float height, int ID, float distance, boolean left){
         this.item = new Item(x, y, width, height);
+        this.ID = ID;
+        this.distance = distance;
+        this.left = left;
     }
 
-    public Playeregg(Context context){
-        this.egg = BitmapFactory.decodeResource(context.getResources(), R.drawable.egg);
+    public Playeregg(Context context, int ID){
+        if (ID == 1) {
+            this.egg = BitmapFactory.decodeResource(context.getResources(), R.drawable.egg);
+        }else if (ID == 2){
+            this.egg = BitmapFactory.decodeResource(context.getResources(), R.drawable.diamondegg);
+        }else if (ID == 3){
+            this.egg = BitmapFactory.decodeResource(context.getResources(), R.drawable.goldenegg);
+        }
     }
 
     @Override
     public void run() {
-
+        this.item.Y += 1;
+        this.distance += 1;
     }
 
     @Override
@@ -30,16 +45,32 @@ public abstract class Playeregg extends Sprite {
         int h = c.getHeight();
         int w = c.getWidth();
 
-        int width = w/8;
-        int height = h/16;
+        int width1 = w/8;
+        int height1 = h/16;
 
-        c.drawBitmap(Bitmap.createScaledBitmap(this.egg, width, height, true), this.item.X, this.item.Y, p);
+        c.drawBitmap(Bitmap.createScaledBitmap(this.egg, width1, height1, true), this.item.X, this.item.Y, p);
 
     }
 
-    public abstract void pressed();
+    public void pressed(){
+        if (this.left == true){
+            this.item.X = this.item.X - width/4;
+        }else {
+            this.item.X = this.item.X + width/4;
+        }
+        this.item.Y -= 1;
 
-    public abstract void unpressed();
+
+    }
+
+    public void unpressed(){
+        if (this.left == true){
+            this.item.X = this.item.X + width/4;
+        }else {
+            this.item.X = this.item.X - width/4;
+        }
+        this.item.Y -= 1;
+    }
 
 
 }
