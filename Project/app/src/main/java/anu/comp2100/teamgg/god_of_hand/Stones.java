@@ -30,7 +30,9 @@ public class Stones extends ArrayList<Stone> {
         Iterator<Stone> it = this.list.iterator();
         while (it.hasNext()){
             Stone s = it.next();
-            if (s.y > GameActivity.screenHight){
+            if (s.y > GameActivity.screenHight){   // when a stone go beyond the screen, we need to remove that stone and generate a new stone
+                this.context = s.context;   // 但是这里写的不对
+                this.attrs = s.attrs;
                 float w = GameActivity.screenWidth;
                 float [] fl = {1/16 * w, 5/16 * w, 9/16 * w, 13/16 * w};
                 int i = (int) Math.random() * fl.length;
