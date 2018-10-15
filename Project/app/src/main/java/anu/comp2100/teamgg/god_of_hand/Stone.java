@@ -5,46 +5,42 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 
-public class Stone extends Sprite {
+import java.util.Random;
+
+public class Stone extends Item {
 
     Bitmap stoneImage;
-    int i;
-
-    public Stone(Context context, int i){
-        this.i = i;
-
-        if (i == 1){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone1);
-        }else if (i == 2){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone2);
-        }else if (i == 3){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone3);
-        }else if (i == 4){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone4);
-        }else if (i == 5){
-            this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone5);
+    Context context;
+    @Nullable AttributeSet attrs;
+    public Stone(Context context, @Nullable AttributeSet attrs,float x, float y, float width, float length){
+        super(context, attrs, x, y, width, length);
+        this.context = context;
+        this.attrs = attrs;
+        Random random = new Random();
+        int i =random.nextInt(5);
+        switch (i){
+            case 0:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone1); break;
+            case 1:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone2); break;
+            case 2:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone3); break;
+            case 3:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone4); break;
+            default:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone5); break;
         }
-    }
 
-    public Stone(float x, float y, float width, float length){
-        this.item = new Item(x,y,width,length);
     }
 
     @Override
     public void run() {
-        this.item.Y += 1;
+        this.y += 6;
     }
 
     @Override
-    public void ItemDraw(Canvas c, Paint p) {
+    public void itemDraw(Canvas c, Paint p) {
         int h = c.getHeight();
         int w = c.getWidth();
-
-        int width = w/8;
-        int height = h/16;
-
-        c.drawBitmap(Bitmap.createScaledBitmap(this.stoneImage, width, height, true), this.item.X, this.item.Y, p);
+        c.drawBitmap(Bitmap.createScaledBitmap(this.stoneImage, h/8, w/16, true), this.x, this.y, p);
 
     }
 }

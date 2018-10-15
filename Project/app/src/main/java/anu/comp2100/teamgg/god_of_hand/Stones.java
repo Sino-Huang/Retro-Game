@@ -13,42 +13,40 @@ import java.util.Random;
 public class Stones extends ArrayList<Stone> {
 
     Context context;
+    @Nullable
+    android.util.AttributeSet attrs;
 
-
-    Random r = new Random();
-    int a = r.nextInt(4) + 1;
-
-
-    public void run(){
-        for (Stone s : this){
-            s.item.Y -= 1;
+    ArrayList<Stone> list;
+    public  Stones(){
+        list = new ArrayList<>();
+    }
+    public void registerStone(Stone s){
+        list.add(s);
+    }
+    public void run(){   // use observer pattern
+        for (Stone s : this.list){
+            s.run();
         }
-        Iterator<Stone> it = this.iterator();
+        Iterator<Stone> it = this.list.iterator();
         while (it.hasNext()){
             Stone s = it.next();
-            if (s.item.Y > GameActivity.screenHight){
+            if (s.y > GameActivity.screenHight){
                 float w = GameActivity.screenWidth;
                 float [] fl = {1/16 * w, 5/16 * w, 9/16 * w, 13/16 * w};
                 int i = (int) Math.random() * fl.length;
                 float y1 = (float) (Math.random() * GameActivity.screenHight/8);
                 it.remove();
-                Stone s1 = new Stone(fl[i], y1, s.item.width, s.item.length);
-                this.add(s1);
+                Stone s1 = new Stone(context, attrs, fl[i], y1, s.width, s.length);
+                this.registerStone(s1);
             }
         }
     }
 
 
-    public void ItemDraw(Canvas c, Paint p) {
-        int h = c.getHeight();
-        int w = c.getWidth();
+    public void itemDraw(Canvas c, Paint p) {   // use observer pattern
+        for (Stone s : this.list){
+            s.itemDraw(c, p);
 
-        int width = w/8;
-        int height = h/16;
-
-        for (Stone s : this){
-            s = new Stone(context, a);
-            c.drawBitmap(Bitmap.createScaledBitmap(s.stoneImage, width, height, true), s.item.X, s.item.Y, p);
         }
     }
 

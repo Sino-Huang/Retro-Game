@@ -7,18 +7,18 @@ import android.os.Bundle;
 public class GameActivity extends AppCompatActivity {
     static float screenWidth;
     static float screenHight;
-    static int highestValue;
-    static String username;
+    int highestValue;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
         Intent intent = getIntent();
         screenHight = intent.getFloatExtra("Hight", (float) 0.0);
         screenWidth = intent.getFloatExtra("Width", (float) 0.0);
         highestValue = intent.getIntExtra("HighestScore", 0);
         username = intent.getStringExtra("Username");
-
+        System.out.println(screenWidth);
+        setContentView(R.layout.activity_game);
     }
 }

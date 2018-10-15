@@ -10,7 +10,7 @@ public class WelcomeActivity extends AppCompatActivity {
     String username;
     int HighestValue;
     float Width;
-    float Hight = (float)0.0;
+    float Hight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
             username = "Guest";
         }
         WelcomeView view1 = findViewById(R.id.welcomeView);
-        HighestValue = view1.ScoreBoard.get(0).value;
-
+        // HighestValue = view1.ScoreBoard.get(0).value;
         Intent intent = new Intent(this, GameActivity.class);
 
         intent.putExtra("Width", Width);
