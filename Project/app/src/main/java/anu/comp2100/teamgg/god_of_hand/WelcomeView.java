@@ -39,10 +39,8 @@ public class WelcomeView extends View { // WelcomeView will contain the scoreboa
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         WelcomeActivity activity = (WelcomeActivity) getContext();
-        if (Math.abs(activity.Hight - (float)0.0) < 0.001) { // means they are not initialised yet
-            activity.Hight = canvas.getHeight();
-            activity.Width = canvas.getWidth();
-        }
+         activity.Hight = canvas.getHeight();
+         activity.Width = canvas.getWidth();
         // draw background
 
         // draw scoreboard

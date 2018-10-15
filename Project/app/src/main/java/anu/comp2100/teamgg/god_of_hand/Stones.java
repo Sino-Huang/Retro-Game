@@ -11,35 +11,27 @@ import java.util.Random;
 
 public class Stones extends ArrayList<Stone> {
 
-    Context context;
-
-    Random r = new Random();
-    int a = r.nextInt(4) + 1;
-
-
-    public void run(){
-        for (Stone s : this){
-            s.item.Y -= 1;
-        }
-        Iterator<Stone> it = this.iterator();
-        while (it.hasNext()){
-            Stone s = it.next();
-            if (s.item.Y > GameActivity.screenHight)
-                it.remove();
+    ArrayList<Stone> list;
+    public  Stones(){
+        list = new ArrayList<>();
+    }
+    public void registerStone(Stone s){
+        list.add(s);
+    }
+    public void run(){   // use observer pattern
+        for (Stone s : this.list){
+            s.run();
+            if(s.y >= s.length*8){
+                s.y = 0;
+            }
         }
     }
 
 
-    public void ItemDraw(Canvas c, Paint p) {
-        int h = c.getHeight();
-        int w = c.getWidth();
+    public void itemDraw(Canvas c, Paint p) {   // use observer pattern
+        for (Stone s : this.list){
+            s.itemDraw(c, p);
 
-        int width = w/8;
-        int height = h/16;
-
-        for (Stone s : this){
-            s = new Stone(context, a);
-            c.drawBitmap(Bitmap.createScaledBitmap(s.stoneImage, width, height, true), s.item.X, s.item.Y, p);
         }
     }
 
