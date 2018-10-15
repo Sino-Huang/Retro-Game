@@ -1,13 +1,13 @@
-# Retro Game - _Insert game name_
+# Retro Game - _God of Hand_
 
 ## Team structure and roles 
-+ Name1 u1234567 - team leader, help page code, morale builder
-+ Name2 u7654321 - note taker, documentation checker, user input
-+ Name3 u3425167 - tricky android code, game state, game graphics rendering
++ Sukai Huang, u6492211 - Manager, Leader, Logistics
++ Guang Zhu, u6260778 - Software Engineer
++ JiTeng Ma, u6788828 - Framework builder
 
 ## Game Overview 
 
-_Add a paragraph the gives a summary of the game you implemented. Include a small screen shot here._
+_This is the game in which players need to use two fingers to control eggs to avoid collisions. Players will receive higher marks if they survive longer IMAGE!!!!._
 
 ## Design Documentation 
 + [Design Summary](designsummary)
@@ -17,27 +17,27 @@ _Add a paragraph the gives a summary of the game you implemented. Include a smal
 ## Minuted Meetings
 + [Meeting 1 - date - decide team structure and game](./Meeting1.md)
 + [Meeting 2 - date - divide up tasks](./Meeting2.md)
-+ [Meeting 3 - date - consider and plan extension aspects](meeting3)
-+ [Meeting 4 - date - review and practice demo](meeting4)
++ [Meeting 3 - date - consider and plan extension aspects](./Meeting3.md)
++ [Meeting 4 - date - review and practice demo](./Meeting4.md)
 
 ## Statement of Originality
 
-I _insert name 1_ declare that everything I have submitted in this
+I _Sukai Huang_ declare that everything I have submitted in this
 assignment is entirely my own work, with exceptions given below.
 
-I _insert name 2_ declare that everything I have submitted in this
+I _Guang Zhu_ declare that everything I have submitted in this
 assignment is entirely my own work, with exceptions given below.
 
-I _insert name 3_ declare that everything I have submitted in this
+I _JiTeng Ma_ declare that everything I have submitted in this
 assignment is entirely my own work, with exceptions given below.
 
 ### Inspiration
 
-_add references from where you obtained the idea form the game and ideas about aspects of the game_
+_The game is inspired by a Wechat game called "[神手](https://baijiahao.baidu.com/s?id=1598907121916100562&wfr=spider&for=pc)"_
 
 ### Code
 
-_reference all the code or ideas for code from other sources_
+_all codes are derived by ourselves_
 
 ### Assets 
 
