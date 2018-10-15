@@ -1,35 +1,31 @@
 package anu.comp2100.teamgg.god_of_hand;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Random;
 
-public class Stones extends ArrayList<Stone> {
+public class MovingItems extends ArrayList<MovingItem> {
 
     Context context;
     Random randomgenerator = new Random();
     @Nullable
     android.util.AttributeSet attrs;
 
-    ArrayList<Stone> list;
-    public  Stones(){
+    ArrayList<MovingItem> list;
+    public MovingItems(){
         list = new ArrayList<>();
     }
-    public void registerStone(Stone s){
+    public void registerStone(MovingItem s){
         list.add(s);
     }
     public void run(){   // use observer pattern
-        Stones newStone = new Stones();
+        MovingItems newStone = new MovingItems();
         float miny = GameActivity.screenHight;
-        for (Stone s : this.list) {
+        for (MovingItem s : this.list) {
             if (s.y < miny) {
                 miny = s.y;
             }
@@ -47,7 +43,7 @@ public class Stones extends ArrayList<Stone> {
                 float y1 = miny - GameActivity.screenHight/2;
                 miny = y1;
 //                Log.w("NEWY", String.valueOf(y1));
-                Stone s1 = new Stone(context, attrs, fl[r], y1, this.list.get(i).width, this.list.get(i).length);
+                MovingItem s1 = new MovingItem(context, attrs, fl[r], y1, this.list.get(i).width, this.list.get(i).length);
                 newStone.registerStone(s1);
             } else {
                 newStone.registerStone(this.list.get(i));
@@ -58,7 +54,7 @@ public class Stones extends ArrayList<Stone> {
 
 
     public void itemDraw(Canvas c, Paint p) {   // use observer pattern
-        for (Stone s : this.list){
+        for (MovingItem s : this.list){
             s.itemDraw(c, p);
 
         }

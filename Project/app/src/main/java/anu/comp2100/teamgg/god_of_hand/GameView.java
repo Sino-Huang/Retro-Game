@@ -14,7 +14,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     Handler timer;
     float screenHeight;
     float screenWidth;
-    Stones stones;
+    MovingItems movingitems;
     Paint p;
     Playeregg leftEgg;
     Playeregg rightEgg;
@@ -29,11 +29,11 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         rightEgg = new Playeregg(context, attrs, screenWidth/2+30, 14*screenHeight/16, screenHeight/8, screenHeight/8, false);
         //System.out.println(screenWidth);
         timer = new Handler();
-        stones = new Stones();
-        stones.registerStone(new Stone(context,attrs,30,0,screenWidth/8,screenHeight/16));
-        stones.registerStone(new Stone(context,attrs,4*screenWidth/8+30,0,screenWidth/8,screenHeight/16));
-        stones.registerStone(new Stone(context,attrs,2*screenWidth/8+30,screenHeight/2,screenWidth/8,screenHeight/16));
-        stones.registerStone(new Stone(context,attrs,6*screenWidth/8+30,screenHeight/2,screenWidth/8,screenHeight/16));
+        movingitems = new MovingItems();
+        movingitems.registerStone(new MovingItem(context,attrs,30,0,screenWidth/8,screenHeight/16));
+        movingitems.registerStone(new MovingItem(context,attrs,4*screenWidth/8+30,0,screenWidth/8,screenHeight/16));
+        movingitems.registerStone(new MovingItem(context,attrs,2*screenWidth/8+30,screenHeight/2,screenWidth/8,screenHeight/16));
+        movingitems.registerStone(new MovingItem(context,attrs,6*screenWidth/8+30,screenHeight/2,screenWidth/8,screenHeight/16));
         this.setOnTouchListener(this);
         timer.postDelayed(this, 5);
     }
@@ -44,7 +44,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         for (int i = 0; i < 4; i++) {
             canvas.drawLine(canvas.getWidth()/ 4 * (i + 1), 0, canvas.getWidth()/ 4 * (i + 1), canvas.getHeight(), p);
         }
-        stones.itemDraw(canvas, p);
+        movingitems.itemDraw(canvas, p);
         leftEgg.itemDraw(canvas,p);
         rightEgg.itemDraw(canvas,p);
 
@@ -75,9 +75,53 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     @Override
     public void run() {
         // update all parts
-        stones.run();
+        movingitems.run();
         this.invalidate();
+        // check collision
+        int outcome = checkCollision();
+//        Log.w("COLLISION", String.valueOf(outcome));
+        // effect happens
+//        switch (outcome) {
+//            case 0:
+//                if (leftEgg.ID != 1) {
+//                    // lose
+//                    leftEgg.changeEgg(0);
+//                    rightEgg.changeEgg(0);
+//                }
+//                break;
+//            case 1:
+//                // change
+//                leftEgg.changeEgg(1);
+//                rightEgg.changeEgg(1);
+//                break;
+//            case 2:
+//                // change to golden egg
+//                leftEgg.changeEgg(2);
+//                rightEgg.changeEgg(2);
+//                break;
+//            case 3:
+//                // change to centuryegg
+//                leftEgg.changeEgg(3);
+//                rightEgg.changeEgg(3);
+//                break;
+//        }
         timer.postDelayed(this, 5);
+    }
+
+    private int checkCollision() {
+//        for (MovingItem i : movingitems) {
+//            if (Math.abs(i.x - leftEgg.x) < 100) {
+//                if (Math.abs(i.y - leftEgg.y) < 0.01) {
+//                    return i.ID;
+//                }
+//            }
+//            if (Math.abs(i.x - rightEgg.x) < 100) {
+//                if (Math.abs(i.y - rightEgg.y) < 0.01) {
+//                    return i.ID;
+//                }
+//            }
+//        }
+        return -1; // means no collision
     }
 
 }
