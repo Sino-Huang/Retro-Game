@@ -18,7 +18,6 @@ public class GameActivity extends AppCompatActivity {
         screenWidth = intent.getFloatExtra("Width", (float) 0.0);
         highestValue = intent.getIntExtra("HighestScore", 0);
         username = intent.getStringExtra("Username");
-        System.out.println(screenWidth);
         setContentView(R.layout.activity_game);
     }
 }

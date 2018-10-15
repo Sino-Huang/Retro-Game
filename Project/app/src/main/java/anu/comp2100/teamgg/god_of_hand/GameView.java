@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -52,15 +53,18 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN || motionEvent.getAction() == MotionEvent.ACTION_POINTER_DOWN) {
-            if (motionEvent.getY() < screenWidth / 2) {
+            Log.w("TickPosis", String.valueOf(motionEvent.getX()));
+            if (motionEvent.getX() < screenWidth / 2) {
                 leftEgg.pressed();
             } else {
                 rightEgg.pressed();
             }
         } else if (motionEvent.getAction() == MotionEvent.ACTION_UP || motionEvent.getAction() == MotionEvent.ACTION_POINTER_UP) {
-            if (motionEvent.getY() < screenWidth / 2) {
+            Log.w("TickPosis", String.valueOf(motionEvent.getX()));
+            if (leftEgg.ispress) {
                 leftEgg.unpressed();
-            } else {
+            }
+            if (rightEgg.ispress) {
                 rightEgg.unpressed();
             }
         }

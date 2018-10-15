@@ -20,13 +20,16 @@ public class Stone extends Item {
         this.context = context;
         this.attrs = attrs;
         Random random = new Random();
-        int i =random.nextInt(5);
+        int i =random.nextInt(13);
         switch (i){
-            case 0:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone1); break;
-            case 1:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone2); break;
-            case 2:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone3); break;
-            case 3:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone4); break;
-            default:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone5); break;
+            case 0: case 1:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone1); break;
+            case 2: case 3:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone2); break;
+            case 4: case 5:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone3); break;
+            case 6: case 7:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone4); break;
+            case 8: case 9:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone5); break;
+            case 10: this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.diamondegg);break;
+            case 11: this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.goldenegg);break;
+            case 12: this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.centuryegg);break;
         }
 
     }
@@ -38,9 +41,7 @@ public class Stone extends Item {
 
     @Override
     public void itemDraw(Canvas c, Paint p) {
-        int h = c.getHeight();
-        int w = c.getWidth();
-        c.drawBitmap(Bitmap.createScaledBitmap(this.stoneImage, h/8, w/16, true), this.x, this.y, p);
+        c.drawBitmap(Bitmap.createScaledBitmap(this.stoneImage, (int)this.width, (int)this.length, true), this.x, this.y, p);
 
     }
 }

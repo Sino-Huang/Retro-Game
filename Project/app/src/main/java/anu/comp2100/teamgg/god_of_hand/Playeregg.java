@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 public class Playeregg extends Item {
     boolean left;
     Bitmap egg;
+    boolean ispress = false;
     public Playeregg(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, boolean left) {
         super(context, attrs, x, y, width, length);
         this.left = left;
@@ -26,7 +27,7 @@ public class Playeregg extends Item {
         }else {
             this.x = this.x + GameActivity.screenWidth/4;
         }
-        this.y -= 1;
+        ispress = true;
     }
 
     public void unpressed(){
@@ -35,7 +36,7 @@ public class Playeregg extends Item {
         }else {
             this.x = this.x - GameActivity.screenWidth/4;
         }
-        this.y -= 1;
+        ispress = false;
     }
 
 
