@@ -6,12 +6,12 @@ import android.graphics.Paint;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Observer;
 import java.util.Random;
 
 public class MovingItems extends ArrayList<MovingItem> {
 
     Context context;
-    Random randomgenerator = new Random();
     @Nullable
     android.util.AttributeSet attrs;
 
@@ -37,13 +37,10 @@ public class MovingItems extends ArrayList<MovingItem> {
                 this.attrs = this.list.get(i).attrs;
                 float w = GameActivity.screenWidth;
                 float[] fl = new float[]{w/16, w/16*5, w/16*9, w/16*13};
-                int r = randomgenerator.nextInt(fl.length);
-//                Log.w("Standard", String.valueOf(miny - GameActivity.screenHight / 5));
-//                Log.w("ADJ", String.valueOf(((float) randomgenerator.nextInt(10)) / 10 * (GameActivity.screenHight)/8));
+                int r = GameView.random.nextInt(fl.length);
                 float y1 = miny - GameActivity.screenHight/2;
                 miny = y1;
-//                Log.w("NEWY", String.valueOf(y1));
-                MovingItem s1 = new MovingItem(context, attrs, fl[r], y1, this.list.get(i).width, this.list.get(i).length);
+                MovingItem s1 = new MovingItem(context, attrs, fl[r], y1, this.list.get(i).width, this.list.get(i).length, r);
                 newStone.registerStone(s1);
             } else {
                 newStone.registerStone(this.list.get(i));

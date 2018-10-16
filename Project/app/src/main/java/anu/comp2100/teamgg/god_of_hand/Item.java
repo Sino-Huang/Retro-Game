@@ -12,13 +12,15 @@ public class Item extends View {
     public float y;
     public float width;
     public float length;
+    public int col;
 
-    public Item(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length){
+    public Item(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, int col){
         super(context,attrs);
         this.x = x;
         this.y = y;
         this.width = width;
         this.length = length;
+        this.col = col;
     }
     public void run(){};
     public void itemDraw(Canvas canvas, Paint paint){};

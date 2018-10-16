@@ -16,12 +16,11 @@ public class MovingItem extends Item {
     Context context;
     int ID;// 0 for stones, 1 for diamondegg item, 2 for goldenegg item, 3 for centuryegg item
     @Nullable AttributeSet attrs;
-    public MovingItem(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length){
-        super(context, attrs, x, y, width, length);
+    public MovingItem(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, int col){
+        super(context, attrs, x, y, width, length, col);
         this.context = context;
         this.attrs = attrs;
-        Random random = new Random();
-        int i =random.nextInt(13);
+        int i = GameView.random.nextInt(13);
         switch (i){
             case 0: case 1:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone1); ID = 0;break;
             case 2: case 3:this.stoneImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.stone2); ID = 0;break;

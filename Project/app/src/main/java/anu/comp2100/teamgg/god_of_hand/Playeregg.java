@@ -15,8 +15,8 @@ public class Playeregg extends Item {
     Bitmap egg;
     Bitmap hand;
     boolean ispress = false;
-    public Playeregg(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, boolean left) {
-        super(context, attrs, x, y, width, length);
+    public Playeregg(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, boolean left, int col) {
+        super(context, attrs, x, y, width, length, col);
         this.context = context;
         this.left = left;
         this.egg = BitmapFactory.decodeResource(context.getResources(), R.drawable.egg);
@@ -31,15 +31,19 @@ public class Playeregg extends Item {
         switch (id) {
             case 0:
                 this.egg = BitmapFactory.decodeResource(context.getResources(), R.drawable.egg);
+                ID = 0;
                 break;
             case 1:
                 this.egg = BitmapFactory.decodeResource(context.getResources(), R.drawable.diamondegg);
+                ID = 1;
                 break;
             case 2:
                 this.egg = BitmapFactory.decodeResource(context.getResources(), R.drawable.goldenegg);
+                ID = 2;
                 break;
             case 3:
                 this.egg = BitmapFactory.decodeResource(context.getResources(), R.drawable.centuryegg);
+                ID = 3;
                 break;
         }
         ID = id;
@@ -57,8 +61,10 @@ public class Playeregg extends Item {
     public void pressed(){
         if (this.left == true){
             this.x = this.x - GameActivity.screenWidth/4;
+            this.col = 0;
         }else {
             this.x = this.x + GameActivity.screenWidth/4;
+            this.col = 3;
         }
         ispress = true;
     }
@@ -66,8 +72,10 @@ public class Playeregg extends Item {
     public void unpressed(){
         if (this.left == true){
             this.x = this.x + GameActivity.screenWidth/4;
+            this.col = 1;
         }else {
             this.x = this.x - GameActivity.screenWidth/4;
+            this.col = 2;
         }
         ispress = false;
     }
