@@ -7,15 +7,22 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
 
+import org.w3c.dom.Node;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.OutputStream;
 
 public class WelcomeView extends View { // WelcomeView will contain the scoreboard information
 
@@ -31,6 +38,21 @@ public class WelcomeView extends View { // WelcomeView will contain the scoreboa
         activity = (WelcomeActivity) getContext();
         p = new Paint();
         p.setTextSize(40);
+        String dir = activity.getExternalFilesDir(null).getAbsolutePath();
+        File file = new File(dir + "/scoreboard.xml");
+        if (file.exists()) {
+            Log.w("FILE", "File exist");
+            FileInputStream fos = null;
+            try {
+                fos = new FileInputStream(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            LoadStoreFacade loadf = LoadStoreFacade.createLoad(fos);
+            Node n = loadf.load();
+            heroname = n.getNodeName();
+            heroscore = Integer.parseInt(n.getTextContent());
+        }
     }
 
     @Override
@@ -59,8 +81,21 @@ public class WelcomeView extends View { // WelcomeView will contain the scoreboa
         heroname = username;
         heroscore = finalscore;
         // save it
-        save();
+
+
+
+        String dir = activity.getExternalFilesDir(null).getAbsolutePath();
+        File file = new File(dir + "/scoreboard.xml");
+        Log.w("File dir", file.getAbsolutePath());
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        LoadStoreFacade savef = LoadStoreFacade.createSave(fos);
+        savef.addElement(username, finalscore);
+        savef.save();
     }
-    public void save(){
-    }
+
 }
