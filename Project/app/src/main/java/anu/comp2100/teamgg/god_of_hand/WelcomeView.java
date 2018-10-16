@@ -64,7 +64,6 @@ public class WelcomeView extends View { // WelcomeView will contain the scoreboa
         WelcomeActivity activity = (WelcomeActivity) getContext();
          activity.Hight = canvas.getHeight();
          activity.Width = canvas.getWidth();
-        // draw background
 
         // draw scoreboard
         Resources res = getResources();

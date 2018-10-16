@@ -13,6 +13,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Intent intent = getIntent();
         screenHight = intent.getFloatExtra("Hight", (float) 0.0);
         screenWidth = intent.getFloatExtra("Width", (float) 0.0);
