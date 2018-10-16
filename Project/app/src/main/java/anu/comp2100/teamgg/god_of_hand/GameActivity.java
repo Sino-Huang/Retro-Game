@@ -20,4 +20,12 @@ public class GameActivity extends AppCompatActivity {
         username = intent.getStringExtra("Username");
         setContentView(R.layout.activity_game);
     }
+
+    void endGame(){
+        Intent intent = new Intent();
+        GameView view = findViewById(R.id.gameView);
+        intent.putExtra("FinalScore", view.scoreCount);
+        setResult(AppCompatActivity.RESULT_OK, intent);
+        finish();
+    }
 }

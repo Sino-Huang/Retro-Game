@@ -6,10 +6,8 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -21,7 +19,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     GameActivity activity;
     Paint p;
     int runCount = 0;
-    int distanceCount = 0;
+    int scoreCount = 0;
     int scoreRatio = 10;
     int effectRemaining = -1;
     Playeregg leftEgg;
@@ -55,7 +53,6 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         for (int i = 0; i < 4; i++) {
             canvas.drawLine(canvas.getWidth()/ 4 * (i + 1), 0, canvas.getWidth()/ 4 * (i + 1), canvas.getHeight(), p);
         }
-        canvas.drawText("Score: "+ String.valueOf(distanceCount) + (leftEgg.ID == 2 ? "   × 3!" :""), canvas.getWidth() / 12, canvas.getHeight() / 16, p);
         movingitems.itemDraw(canvas, p);
         if (leftEgg.ID == 3) {
             Paint paint = new Paint();
@@ -63,6 +60,13 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
             paint.setFakeBoldText(true);
             canvas.drawText("DIZZY!", (float) (canvas.getWidth() / 2.9), canvas.getHeight() / 2, paint);
         }
+        canvas.drawText( activity.username + "'s Score: "+ String.valueOf(scoreCount) + (leftEgg.ID == 2 ? "   × 3!!!!" :""), canvas.getWidth() / 12, canvas.getHeight() / 16, p);
+        if (scoreCount < activity.highestValue){
+            canvas.drawText("Highest Score: " + String.valueOf(activity.highestValue), canvas.getWidth() / 12, canvas.getHeight() / 16 + 40, p);
+        }else {
+            canvas.drawText("Highest Score: " + String.valueOf(scoreCount), canvas.getWidth() / 12, canvas.getHeight() / 16 + 40, p);
+        }
+
 
         if (effectRemaining < 80 && effectRemaining > 0) {
             if (effectRemaining % 10 > 5) { // blink effect when the effect is going to disappear
@@ -118,7 +122,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
             scoreRatio = 10;
         }
         if (runCount % scoreRatio == 0) {
-            distanceCount++;
+            scoreCount++;
         }
         movingitems.run();
         for (int i = 0; i < movingitems.list.size(); i++) {
@@ -127,7 +131,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
             if (leftEgg.col == getItem.col) {
                 if (Math.abs(getItem.y - leftEgg.y) < 20) {
                     if (leftEgg.ID != 1 && getItem.ID == 0 ) {
-                        finish();
+                        activity.endGame();
                     }else if (leftEgg.ID != getItem.ID && !(leftEgg.ID == 1 && getItem.ID == 0)) {
                         leftEgg.changeEgg(getItem.ID);
                         rightEgg.changeEgg(getItem.ID);
@@ -138,7 +142,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
             } else if (rightEgg.col == getItem.col) { // check right egg
                 if (Math.abs(getItem.y - rightEgg.y) < 20) {
                     if (leftEgg.ID != 1 && getItem.ID == 0) {
-                        finish();
+                        activity.endGame();
                     }else if (leftEgg.ID != getItem.ID && !(leftEgg.ID == 1 && getItem.ID == 0)) {
                         rightEgg.changeEgg(getItem.ID);
                         leftEgg.changeEgg(getItem.ID);
@@ -159,8 +163,4 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         this.invalidate();
         timer.postDelayed(this, 5);
     }
-    void finish(){
-        activity.finish();
-    }
-
 }

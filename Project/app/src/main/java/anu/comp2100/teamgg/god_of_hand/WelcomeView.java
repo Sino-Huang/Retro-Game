@@ -1,5 +1,6 @@
 package anu.comp2100.teamgg.god_of_hand;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -18,26 +19,26 @@ import java.io.FileReader;
 
 public class WelcomeView extends View { // WelcomeView will contain the scoreboard information
 
-    ScoreInfo ScoreBoard = new ScoreInfo();
+    String heroname = "Guest";
+    public int heroscore = 0;
+    WelcomeActivity activity;
+    Canvas canvas = null;
+    Paint p;
 
     public WelcomeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         // load the scoreboard information
-        File file = new File("./res/scoreboard.json");
-        if (file.exists()) {
-            try {
-                FileReader fr = new FileReader(file);
-                Gson gson = new Gson();
-                ScoreBoard = gson.fromJson(fr, ScoreInfo.class);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
+        activity = (WelcomeActivity) getContext();
+        p = new Paint();
+        p.setTextSize(40);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if (this.canvas == null) {
+            this.canvas = canvas;
+        }
         WelcomeActivity activity = (WelcomeActivity) getContext();
          activity.Hight = canvas.getHeight();
          activity.Width = canvas.getWidth();
@@ -46,9 +47,20 @@ public class WelcomeView extends View { // WelcomeView will contain the scoreboa
         // draw scoreboard
         Resources res = getResources();
         Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.score_board);
-        Bitmap resizebm = Bitmap.createScaledBitmap(bitmap, (int) (canvas.getWidth() * 0.5), (int)(canvas.getHeight() * 0.5), false);
-        Paint p = new Paint();
+        Bitmap resizebm = Bitmap.createScaledBitmap(bitmap, (int) (canvas.getWidth() * 0.5), (int)(canvas.getHeight() * 0.5), true);
         canvas.drawBitmap(resizebm, (float)(canvas.getWidth() * 0.25), (float)(canvas.getHeight() * 0.4), p);
+        canvas.drawText("Hero Board", (float) (canvas.getWidth() * 0.25) + 100, (float) (canvas.getHeight() * 0.4) + 130, p);
+        canvas.drawText(String.valueOf(heroname), (float) (canvas.getWidth() * 0.25)+ 130, (float) (canvas.getHeight() * 0.4) + 250, p);
+        canvas.drawText(String.valueOf(heroscore), (float) (canvas.getWidth() * 0.25)+ 130, (float) (canvas.getHeight() * 0.4) + 320, p);
 
+    }
+
+    public void updateScore(String username, int finalscore) {
+        heroname = username;
+        heroscore = finalscore;
+        // save it
+        save();
+    }
+    public void save(){
     }
 }
