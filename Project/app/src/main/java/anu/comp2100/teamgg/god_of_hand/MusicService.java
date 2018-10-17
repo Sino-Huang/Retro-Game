@@ -24,11 +24,6 @@ public class MusicService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (player == null) {
-            player = MediaPlayer.create(this, R.raw.bgm);
-            player.setLooping(true);
-            player.setVolume(100, 100);
-        }
         player.start();
         Log.w("Music", "Music start");
         return Service.START_STICKY;
@@ -37,10 +32,7 @@ public class MusicService extends Service {
     @Override
     public void onDestroy() {
         Log.w("Music", "Music End");
-        player.stop();
-        player.reset();
-        player.release();
-        player = null;
+        player.pause();
         super.onDestroy();
     }
 }

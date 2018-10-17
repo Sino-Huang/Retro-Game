@@ -38,6 +38,7 @@ public class WelcomeView extends View { // WelcomeView will contain the scoreboa
         activity = (WelcomeActivity) getContext();
         p = new Paint();
         p.setTextSize(40);
+        p.setTextAlign(Paint.Align.CENTER);
         String dir = activity.getExternalFilesDir(null).getAbsolutePath();
         File file = new File(dir + "/scoreboard.xml");
         if (file.exists()) {
@@ -70,9 +71,9 @@ public class WelcomeView extends View { // WelcomeView will contain the scoreboa
         Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.score_board);
         Bitmap resizebm = Bitmap.createScaledBitmap(bitmap, (int) (canvas.getWidth() * 0.5), (int)(canvas.getHeight() * 0.5), true);
         canvas.drawBitmap(resizebm, (float)(canvas.getWidth() * 0.25), (float)(canvas.getHeight() * 0.4), p);
-        canvas.drawText("Hero Board", (float) (canvas.getWidth() * 0.25) + 100, (float) (canvas.getHeight() * 0.4) + 130, p);
-        canvas.drawText(String.valueOf(heroname), (float) (canvas.getWidth() * 0.25)+ 130, (float) (canvas.getHeight() * 0.4) + 250, p);
-        canvas.drawText(String.valueOf(heroscore), (float) (canvas.getWidth() * 0.25)+ 130, (float) (canvas.getHeight() * 0.4) + 320, p);
+        canvas.drawText("Hero Board", canvas.getWidth()/2, (float) (canvas.getHeight() * 0.5), p);
+        canvas.drawText(String.valueOf(heroname), canvas.getWidth()/2, (float) (canvas.getHeight() * 0.6), p);
+        canvas.drawText(String.valueOf(heroscore), canvas.getWidth()/2, (float) (canvas.getHeight() * 0.7), p);
 
     }
 

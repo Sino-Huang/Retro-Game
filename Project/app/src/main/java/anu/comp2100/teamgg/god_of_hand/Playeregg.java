@@ -14,6 +14,7 @@ public class Playeregg extends Item {
     int ID = 0; // 1 for diamondegg , 2 for goldenegg , 3 for centuryegg
     Bitmap egg;
     Bitmap hand;
+    int pointerid = -1;
     boolean ispress = false;
     public Playeregg(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, boolean left, int col) {
         super(context, attrs, x, y, width, length, col);
@@ -58,26 +59,32 @@ public class Playeregg extends Item {
         }
     }
 
-    public void pressed(){
-        if (this.left == true){
-            this.x = this.x - GameActivity.screenWidth/4;
-            this.col = 0;
-        }else {
-            this.x = this.x + GameActivity.screenWidth/4;
-            this.col = 3;
+    public void pressed(int id){
+        if (!ispress) {
+            if (this.left){
+                this.x = this.x - GameActivity.screenWidth/4;
+                this.col = 0;
+            }else {
+                this.x = this.x + GameActivity.screenWidth/4;
+                this.col = 3;
+            }
+            ispress = true;
+            pointerid = id;
         }
-        ispress = true;
     }
 
-    public void unpressed(){
-        if (this.left == true){
-            this.x = this.x + GameActivity.screenWidth/4;
-            this.col = 1;
-        }else {
-            this.x = this.x - GameActivity.screenWidth/4;
-            this.col = 2;
+    public void unpressed(int id){
+        if (id == pointerid && ispress) {
+            if (this.left){
+                this.x = this.x + GameActivity.screenWidth/4;
+                this.col = 1;
+            }else {
+                this.x = this.x - GameActivity.screenWidth/4;
+                this.col = 2;
+            }
+            pointerid = -1;
+            ispress = false;
         }
-        ispress = false;
     }
 
 

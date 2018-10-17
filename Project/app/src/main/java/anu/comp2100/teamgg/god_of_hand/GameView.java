@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -58,7 +59,8 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
             Paint paint = new Paint();
             paint.setTextSize(68);
             paint.setFakeBoldText(true);
-            canvas.drawText("DIZZY!", (float) (canvas.getWidth() / 2.9), canvas.getHeight() / 2, paint);
+            paint.setTextAlign(Paint.Align.CENTER);
+            canvas.drawText("DIZZY!", canvas.getWidth() / 2, canvas.getHeight() / 2, paint);
         }
         canvas.drawText( activity.username + "'s Score: "+ String.valueOf(scoreCount) + (leftEgg.ID == 2 ? "   × 3!!!!" :""), canvas.getWidth() / 12, canvas.getHeight() / 16, p);
         if (scoreCount < activity.highestValue){
@@ -82,26 +84,30 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN || motionEvent.getAction() == MotionEvent.ACTION_POINTER_DOWN) {
-            if (motionEvent.getX() < screenWidth / 2) {
+        int pointerid = motionEvent.getPointerId(motionEvent.getActionIndex());
+        if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN || motionEvent.getActionMasked() == MotionEvent.ACTION_POINTER_DOWN) {
+            Log.w("DOWN", String.valueOf(pointerid));
+            if (motionEvent.getX(motionEvent.getActionIndex()) < screenWidth / 2) {
                 if (leftEgg.ID == 3) {
-                    rightEgg.pressed();
+                    rightEgg.pressed(pointerid);
                 } else {
-                    leftEgg.pressed();
+                    leftEgg.pressed(pointerid);
                 }
             } else {
                 if (leftEgg.ID == 3) {
-                    leftEgg.pressed();
+                    leftEgg.pressed(pointerid);
                 } else {
-                    rightEgg.pressed();
+                    rightEgg.pressed(pointerid);
                 }
             }
-        } else if (motionEvent.getAction() == MotionEvent.ACTION_UP || motionEvent.getAction() == MotionEvent.ACTION_POINTER_UP) {
+        }
+        if (motionEvent.getActionMasked() == MotionEvent.ACTION_UP || motionEvent.getActionMasked() == MotionEvent.ACTION_POINTER_UP) {
+            Log.w("UP", String.valueOf(pointerid));
             if (leftEgg.ispress) {
-                leftEgg.unpressed();
+                leftEgg.unpressed(pointerid);
             }
             if (rightEgg.ispress) {
-                rightEgg.unpressed();
+                rightEgg.unpressed(pointerid);
             }
         }
         return true;
