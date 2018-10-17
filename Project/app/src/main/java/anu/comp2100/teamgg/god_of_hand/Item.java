@@ -21,7 +21,9 @@ public class Item extends View {
 
     public Item(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, int col){
         super(context,attrs);
-        this.context = new WeakReference<>(context.getApplicationContext());
+        if (context != null) {
+            this.context = new WeakReference<>(context.getApplicationContext());
+        }
         this.x = x;
         this.y = y;
         this.width = width;

@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 
 import java.lang.ref.WeakReference;
 
-public class MovingItem extends Item {
+public class MovingItem extends Item implements Observer{
 
     Bitmap stoneImage;
     float screenHight;
@@ -25,17 +25,18 @@ public class MovingItem extends Item {
         this.wr = new WeakReference<>(context);
         this.screenHight = screenHight;
         int i = GameView.random.nextInt(13);
-        switch (i){
-            case 0: case 1:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone1); ID = 0;break;
-            case 2: case 3:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone2); ID = 0;break;
-            case 4: case 5:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone3); ID = 0;break;
-            case 6: case 7:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone4); ID = 0;break;
-            case 8: case 9:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone5); ID = 0;break;
-            case 10: this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.diamondegg);ID = 1;break;
-            case 11: this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.goldenegg);ID = 2;break;
-            case 12: this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.centuryegg);ID = 3;break;
+        if (wr.get() != null) {
+            switch (i){
+                case 0: case 1:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone1); ID = 0;break;
+                case 2: case 3:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone2); ID = 0;break;
+                case 4: case 5:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone3); ID = 0;break;
+                case 6: case 7:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone4); ID = 0;break;
+                case 8: case 9:this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.stone5); ID = 0;break;
+                case 10: this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.diamondegg);ID = 1;break;
+                case 11: this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.goldenegg);ID = 2;break;
+                case 12: this.stoneImage = BitmapFactory.decodeResource(wr.get().getResources(), R.drawable.centuryegg);ID = 3;break;
+            }
         }
-
     }
 
     @Override

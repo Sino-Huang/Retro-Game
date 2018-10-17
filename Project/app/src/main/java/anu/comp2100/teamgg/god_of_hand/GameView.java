@@ -19,7 +19,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     Handler timer;
     float screenHeight;
     float screenWidth;
-    MovingItems movingitems;
+    MovingItemsObservable movingitems;
     GameActivity activity;
     Paint p;
     int runCount = 0;
@@ -43,11 +43,11 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         rightEgg = new Playeregg(thecon.get(), attrs, screenWidth / 2 + 30, 14 * screenHeight / 16, screenHeight / 8, screenHeight / 8, false, 2, screenWidth);
         //System.out.println(screenWidth);
         timer = new Handler();
-        movingitems = new MovingItems(screenHeight, screenWidth);
-        movingitems.registerStone(new MovingItem(thecon.get(), attrs, 30, 0, screenWidth / 8, screenHeight / 16, 0, screenHeight));
-        movingitems.registerStone(new MovingItem(thecon.get(), attrs, 4 * screenWidth / 8 + 30, 0, screenWidth / 8, screenHeight / 16, 2, screenHeight));
-        movingitems.registerStone(new MovingItem(thecon.get(), attrs, 2 * screenWidth / 8 + 30, screenHeight / 2, screenWidth / 8, screenHeight / 16, 1, screenHeight));
-        movingitems.registerStone(new MovingItem(thecon.get(), attrs, 6 * screenWidth / 8 + 30, screenHeight / 2, screenWidth / 8, screenHeight / 16, 3, screenHeight));
+        movingitems = new MovingItemsObservable(screenHeight, screenWidth);
+        movingitems.registerObservers(new MovingItem(thecon.get(), attrs, 30, 0, screenWidth / 8, screenHeight / 16, 0, screenHeight));
+        movingitems.registerObservers(new MovingItem(thecon.get(), attrs, 4 * screenWidth / 8 + 30, 0, screenWidth / 8, screenHeight / 16, 2, screenHeight));
+        movingitems.registerObservers(new MovingItem(thecon.get(), attrs, 2 * screenWidth / 8 + 30, screenHeight / 2, screenWidth / 8, screenHeight / 16, 1, screenHeight));
+        movingitems.registerObservers(new MovingItem(thecon.get(), attrs, 6 * screenWidth / 8 + 30, screenHeight / 2, screenWidth / 8, screenHeight / 16, 3, screenHeight));
         this.setOnTouchListener(this);
         timer.postDelayed(this, 5);
     }
@@ -58,7 +58,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         for (int i = 0; i < 4; i++) {
             canvas.drawLine(canvas.getWidth()/ 4 * (i + 1), 0, canvas.getWidth()/ 4 * (i + 1), canvas.getHeight(), p);
         }
-        movingitems.itemDraw(canvas, p);
+        movingitems.notifyObserversdraw(canvas, p);
         if (leftEgg.ID == 3) {
             Paint paint = new Paint();
             paint.setTextSize(68);
@@ -134,9 +134,9 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         if (runCount % scoreRatio == 0) {
             scoreCount++;
         }
-        movingitems.run();
-        for (int i = 0; i < movingitems.list.size(); i++) {
-            MovingItem getItem = movingitems.list.get(i);
+        movingitems.notifyObserversrun();
+        for (int i = 0; i < movingitems.observerList.size(); i++) {
+            MovingItem getItem = (MovingItem) movingitems.observerList.get(i);
             //check leftegg
             if (leftEgg.col == getItem.col) {
                 if (Math.abs(getItem.y - leftEgg.y) < 20) {

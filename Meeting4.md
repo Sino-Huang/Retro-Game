@@ -8,7 +8,7 @@
 + Guang Zhu, u6260778
 + JiTeng Ma, u6788828
 
-## Decorator Design pattern 
+## Observer Design pattern 
 1. Use this design pattern to control the moving items 
 
 

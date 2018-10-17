@@ -25,33 +25,37 @@ public class Playeregg extends Item {
         super(context, attrs, x, y, width, length, col);
         this.context = new WeakReference<>(context);
         this.left = left;
-        this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.egg);
-        this.screenWidth = screenWidth;
-        if (left) {
-            this.hand = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.lefthand);
-        } else {
-            this.hand = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.righthand);
+        if (context != null) {
+            this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.egg);
+            this.screenWidth = screenWidth;
+            if (left) {
+                this.hand = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.lefthand);
+            } else {
+                this.hand = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.righthand);
+            }
         }
     }
 
     public void changeEgg(int id) {
-        switch (id) {
-            case 0:
-                this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.egg);
-                ID = 0;
-                break;
-            case 1:
-                this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.diamondegg);
-                ID = 1;
-                break;
-            case 2:
-                this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.goldenegg);
-                ID = 2;
-                break;
-            case 3:
-                this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.centuryegg);
-                ID = 3;
-                break;
+        if (this.context.get() != null) {
+            switch (id) {
+                case 0:
+                    this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.egg);
+                    ID = 0;
+                    break;
+                case 1:
+                    this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.diamondegg);
+                    ID = 1;
+                    break;
+                case 2:
+                    this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.goldenegg);
+                    ID = 2;
+                    break;
+                case 3:
+                    this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.centuryegg);
+                    ID = 3;
+                    break;
+            }
         }
         ID = id;
     }
