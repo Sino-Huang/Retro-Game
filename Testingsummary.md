@@ -12,13 +12,13 @@ The result of the testing is shown below
 # Black Box testing 
 In black box testing, we mainly want to test that all the game features are implemented successfully. After manual testing by all members of the team, all game features work well.  
 
-## ChangeEggs when collect egg props 
+## ChangeEggs when collecting egg props 
 When hitting an egg prop, the player's egg will change to that egg for a while. 
 
 ![](./TestingRes/beforecollect.png)
 ![](./TestingRes/aftercollect.png)
 
-## End game after collide with stones 
+## End game after colliding with stones 
 When hitting a stone, The game will end and the the progam will come back to the welcome page with a toast informing players that they lose.
 
 ![](./TestingRes/beforecollide.png)
