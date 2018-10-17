@@ -17,10 +17,10 @@ _This is the game in which players need to use two fingers to control eggs to av
 + [Testing Summary](./Testingsummary.md)
 
 ## Minuted Meetings
-+ [Meeting 1 - date - decide team structure and game](./Meeting1.md)
-+ [Meeting 2 - date - divide up tasks](./Meeting2.md)
-+ [Meeting 3 - date - consider and plan extension aspects](./Meeting3.md)
-+ [Meeting 4 - date - review and practice demo](./Meeting4.md)
++ [Meeting 1  decide team structure and game](./Meeting1.md)
++ [Meeting 2  divide up tasks](./Meeting2.md)
++ [Meeting 3  consider and plan extension aspects](./Meeting3.md)
++ [Meeting 4  review and practice demo](./Meeting4.md)
 
 ## Statement of Originality
 
