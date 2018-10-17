@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class GameActivity extends AppCompatActivity {
-    static float screenWidth;
-    static float screenHight;
+    float screenWidth;
+    float screenHight;
     int highestValue;
     String username;
 
@@ -29,6 +29,13 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent();
         GameView view = findViewById(R.id.gameView);
         intent.putExtra("FinalScore", view.scoreCount);
+        view.timer = null;
+        view.leftEgg = null;
+        view.rightEgg = null;
+        view.movingitems = null;
+        view.activity = null;
+        view.p = null;
+
         setResult(AppCompatActivity.RESULT_OK, intent);
         finish();
     }

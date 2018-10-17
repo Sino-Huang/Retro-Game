@@ -27,6 +27,8 @@ public class LoadStoreFacade {
     DocumentBuilder db;
     OutputStream outputStream;
     Document doc;
+    static LoadStoreFacade save;
+    static LoadStoreFacade load;
 
     public LoadStoreFacade() {
         dbf = DocumentBuilderFactory.newInstance();
@@ -38,22 +40,32 @@ public class LoadStoreFacade {
     }
 
     static LoadStoreFacade createSave(OutputStream outputStream) {
-        LoadStoreFacade save = new LoadStoreFacade();
-        save.outputStream = outputStream;
-        save.doc = save.db.newDocument();
-        return save;
+        if (save != null) {
+            return save;
+        } else {
+            LoadStoreFacade save = new LoadStoreFacade();
+            save.outputStream = outputStream;
+            save.doc = save.db.newDocument();
+            LoadStoreFacade.save = save;
+            return LoadStoreFacade.save;
+        }
     }
 
     static LoadStoreFacade createLoad(InputStream inputStream) {
-        LoadStoreFacade load = new LoadStoreFacade();
-        try {
-            load.doc = load.db.parse(inputStream);
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (load != null) {
+            return load;
+        } else {
+            LoadStoreFacade load = new LoadStoreFacade();
+            try {
+                load.doc = load.db.parse(inputStream);
+            } catch (SAXException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            LoadStoreFacade.load = load;
+            return LoadStoreFacade.load;
         }
-        return load;
     }
 
     void addElement(String name, int value) {

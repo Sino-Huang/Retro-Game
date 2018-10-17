@@ -9,15 +9,19 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.lang.ref.WeakReference;
+
 public class Item extends View {
     public float x;
     public float y;
     public float width;
     public float length;
     public int col;
+    WeakReference<Context> context;
 
     public Item(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, int col){
         super(context,attrs);
+        this.context = new WeakReference<>(context.getApplicationContext());
         this.x = x;
         this.y = y;
         this.width = width;

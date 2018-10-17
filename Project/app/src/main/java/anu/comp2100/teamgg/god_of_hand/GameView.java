@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.lang.ref.WeakReference;
 import java.util.Random;
 
 public class GameView extends View implements Runnable, View.OnTouchListener{
@@ -32,20 +33,21 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         super(context, attrs);
         p = new Paint();
         p.setTextSize(24);
+        WeakReference<Context> thecon = new WeakReference<>(context);
 
         GameActivity activity = (GameActivity) getContext();
         this.activity = activity;
         screenHeight = activity.screenHight;
         screenWidth = activity.screenWidth;
-        leftEgg = new Playeregg(context, attrs, screenWidth/4+30, 14*screenHeight/16, screenHeight/8, screenHeight/8, true, 1);
-        rightEgg = new Playeregg(context, attrs, screenWidth / 2 + 30, 14 * screenHeight / 16, screenHeight / 8, screenHeight / 8, false, 2);
+        leftEgg = new Playeregg(thecon.get(), attrs, screenWidth/4+30, 14*screenHeight/16, screenHeight/8, screenHeight/8, true, 1, screenWidth);
+        rightEgg = new Playeregg(thecon.get(), attrs, screenWidth / 2 + 30, 14 * screenHeight / 16, screenHeight / 8, screenHeight / 8, false, 2, screenWidth);
         //System.out.println(screenWidth);
         timer = new Handler();
-        movingitems = new MovingItems();
-        movingitems.registerStone(new MovingItem(context, attrs, 30, 0, screenWidth / 8, screenHeight / 16, 0));
-        movingitems.registerStone(new MovingItem(context, attrs, 4 * screenWidth / 8 + 30, 0, screenWidth / 8, screenHeight / 16, 2));
-        movingitems.registerStone(new MovingItem(context, attrs, 2 * screenWidth / 8 + 30, screenHeight / 2, screenWidth / 8, screenHeight / 16, 1));
-        movingitems.registerStone(new MovingItem(context, attrs, 6 * screenWidth / 8 + 30, screenHeight / 2, screenWidth / 8, screenHeight / 16, 3));
+        movingitems = new MovingItems(screenHeight, screenWidth);
+        movingitems.registerStone(new MovingItem(thecon.get(), attrs, 30, 0, screenWidth / 8, screenHeight / 16, 0, screenHeight));
+        movingitems.registerStone(new MovingItem(thecon.get(), attrs, 4 * screenWidth / 8 + 30, 0, screenWidth / 8, screenHeight / 16, 2, screenHeight));
+        movingitems.registerStone(new MovingItem(thecon.get(), attrs, 2 * screenWidth / 8 + 30, screenHeight / 2, screenWidth / 8, screenHeight / 16, 1, screenHeight));
+        movingitems.registerStone(new MovingItem(thecon.get(), attrs, 6 * screenWidth / 8 + 30, screenHeight / 2, screenWidth / 8, screenHeight / 16, 3, screenHeight));
         this.setOnTouchListener(this);
         timer.postDelayed(this, 5);
     }
@@ -140,6 +142,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
                 if (Math.abs(getItem.y - leftEgg.y) < 20) {
                     if (leftEgg.ID != 1 && getItem.ID == 0 ) {
                         activity.endGame();
+                        return;
                     }else if (leftEgg.ID != getItem.ID && !(leftEgg.ID == 1 && getItem.ID == 0)) {
                         leftEgg.changeEgg(getItem.ID);
                         rightEgg.changeEgg(getItem.ID);
@@ -151,6 +154,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
                 if (Math.abs(getItem.y - rightEgg.y) < 20) {
                     if (leftEgg.ID != 1 && getItem.ID == 0) {
                         activity.endGame();
+                        return;
                     }else if (leftEgg.ID != getItem.ID && !(leftEgg.ID == 1 && getItem.ID == 0)) {
                         rightEgg.changeEgg(getItem.ID);
                         leftEgg.changeEgg(getItem.ID);
