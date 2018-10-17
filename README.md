@@ -41,4 +41,28 @@ _all codes are derived by ourselves_
 
 ### Assets 
 
-_this includes images, sounds, etc._
+_[bgm.mp3 - "中国战斗曲 - 曾志豪"](./Assets/bgm.mp3)_
+
+_[centuryegg.png](./Assets/centuryegg.png)_
+
+_[diamondegg.jpg](./Assets/diamondegg.jpg)_
+
+_[egg.jpg](./Assets/egg.jpg)_
+
+_[goldenegg.png](./Assets/goldenegg.png)_
+
+_[lefthand.png](./Assets/lefthand.png)_
+
+_[righthand.png](./Assets/righthand.png)_
+
+_[score_board.png](./Assets/score_board.png)_
+
+_[stone1.png](./Assets/stone1.png)_
+
+_[stone2.png](./Assets/stone2.png)_
+
+_[stone3.png](./Assets/stone3.png)_
+
+_[stone4.png](./Assets/stone4.png)_
+
+_[stone5.png](./Assets/stone5.png)_
