@@ -1,5 +1,7 @@
 package anu.comp2100.teamgg.god_of_hand;
-
+/**
+ * @author COMP2100 TeamGG
+ */
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;

@@ -1,5 +1,7 @@
 package anu.comp2100.teamgg.god_of_hand;
-
+/**
+ * @author COMP2100 TeamGG
+ */
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -33,6 +35,8 @@ public class MusicService extends Service {
     public void onDestroy() {
         Log.w("Music", "Music End");
         player.pause();
+        player.reset();
+        player.release();
         super.onDestroy();
     }
 }

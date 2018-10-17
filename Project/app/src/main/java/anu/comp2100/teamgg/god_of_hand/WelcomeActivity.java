@@ -1,5 +1,7 @@
 package anu.comp2100.teamgg.god_of_hand;
-
+/**
+ * @author COMP2100 TeamGG
+ */
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;

@@ -1,5 +1,7 @@
 package anu.comp2100.teamgg.god_of_hand;
-
+/**
+ * @author COMP2100 TeamGG
+ */
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,8 +38,8 @@ public class MovingItem extends Item {
 
     @Override
     public void run() {
-        this.y += 6;
-    }
+        this.y += GameActivity.screenHight/50;
+    }// match the screen size
 
     @Override
     public void itemDraw(Canvas c, Paint p) {

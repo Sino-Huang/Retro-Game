@@ -1,7 +1,7 @@
 package anu.comp2100.teamgg.god_of_hand;
-
-import android.content.Context;
-import android.net.Uri;
+/**
+ * @author COMP2100 TeamGG
+ */
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

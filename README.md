@@ -7,12 +7,14 @@
 
 ## Game Overview 
 
-_This is the game in which players need to use two fingers to control eggs to avoid collisions. Players will receive higher marks if they survive longer IMAGE!!!!._
+_This is the game in which players need to use two fingers to control eggs to avoid collisions. Players can also collect "egg" props along the way to get some additional effects. Players will receive higher marks if they survive longer._
+
+![](./demo1.png)![](./demo2.png)
 
 ## Design Documentation 
-+ [Design Summary](designsummary)
-+ [UML Diagram](umldiagram)
-+ [Testing Summary](testingsummary)
++ [Design Summary](./Designsummary.md)
++ [UML Diagram](./UML.png)
++ [Testing Summary](./Testingsummary.md)
 
 ## Minuted Meetings
 + [Meeting 1 - date - decide team structure and game](./Meeting1.md)
