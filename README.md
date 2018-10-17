@@ -73,4 +73,4 @@ All the image assets are obtained from public domain. Mainly from ["Baidu Image"
 
 Background music is ["中国战斗曲 - 曾志豪"](https://baike.baidu.com/item/%E4%B8%AD%E5%9B%BD%E6%88%98%E6%96%97%E6%9B%B2/19311175?fr=aladdin)
 
-If someone find copyright issue, please inform the project maintainer immediately by posting git issues or directly sending email at u6492211@anu.edu.au
+If someone find copyright issue, please inform the project maintainer immediately by posting git issues or directly sending email at [u6492211@anu.edu.au](u6492211@anu.edu.au)
