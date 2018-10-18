@@ -1,6 +1,8 @@
 package anu.comp2100.teamgg.god_of_hand;
 /**
  * @author COMP2100 TeamGG
+ *  This GameView connects all of the core parts of the game. The items are drawn and run on this view.
+ *  Multiple touch on the screen can be detected and the remaining time for special status of eggs is counted.
  */
 import android.content.Context;
 import android.graphics.Canvas;
@@ -75,7 +77,8 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
 
 
         if (effectRemaining < 80 && effectRemaining > 0) {
-            if (effectRemaining % 10 > 5) { // blink effect when the effect is going to disappear
+            // blink effect when the effect is going to disappear
+            if (effectRemaining % 10 > 5) {
                 leftEgg.itemDraw(canvas, p);
                 rightEgg.itemDraw(canvas, p);
             }

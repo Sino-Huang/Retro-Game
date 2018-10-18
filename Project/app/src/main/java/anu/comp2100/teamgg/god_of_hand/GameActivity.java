@@ -1,6 +1,7 @@
 package anu.comp2100.teamgg.god_of_hand;
 /**
  * @author COMP2100 TeamGG
+ *  GameActivity receives intend from welcome activity and extract screen size for assigning values.
  */
 
 import android.content.Intent;
