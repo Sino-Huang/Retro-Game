@@ -26,8 +26,8 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     int scoreCount = 0;
     int scoreRatio = 10;
     int effectRemaining = -1;
-    Playeregg leftEgg;
-    Playeregg rightEgg;
+    PlayerEgg leftEgg;
+    PlayerEgg rightEgg;
     static Random random = new Random();
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -39,8 +39,8 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         this.activity = activity;
         screenHeight = activity.screenHeight;
         screenWidth = activity.screenWidth;
-        leftEgg = new Playeregg(thecon.get(), attrs, screenWidth/4+30, 14*screenHeight/16, screenHeight/8, screenHeight/8, true, 1, screenWidth);
-        rightEgg = new Playeregg(thecon.get(), attrs, screenWidth / 2 + 30, 14 * screenHeight / 16, screenHeight / 8, screenHeight / 8, false, 2, screenWidth);
+        leftEgg = new PlayerEgg(thecon.get(), attrs, screenWidth/4+30, 14*screenHeight/16, screenHeight/8, screenHeight/8, true, 1, screenWidth);
+        rightEgg = new PlayerEgg(thecon.get(), attrs, screenWidth / 2 + 30, 14 * screenHeight / 16, screenHeight / 8, screenHeight / 8, false, 2, screenWidth);
         //System.out.println(screenWidth);
         timer = new Handler();
         movingitems = new MovingItemsObservable(screenHeight, screenWidth);
@@ -108,10 +108,10 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
             }
             if (motionEvent.getActionMasked() == MotionEvent.ACTION_UP || motionEvent.getActionMasked() == MotionEvent.ACTION_POINTER_UP) {
                 Log.w("UP", String.valueOf(pointerid));
-                if (leftEgg.ispress) {
+                if (leftEgg.isPress) {
                     leftEgg.unpressed(pointerid);
                 }
-                if (rightEgg.ispress) {
+                if (rightEgg.isPress) {
                     rightEgg.unpressed(pointerid);
                 }
             }

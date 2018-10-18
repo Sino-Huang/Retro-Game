@@ -1,21 +1,14 @@
 package anu.comp2100.teamgg.god_of_hand;
-/**
- * @author COMP2100 TeamGG
- */
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-
-import com.google.gson.Gson;
 
 import org.w3c.dom.Node;
 
@@ -23,13 +16,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.OutputStream;
 
-public class WelcomeView extends View { // WelcomeView will contain the scoreboard information
+/**
+ * @author COMP2100 TeamGG
+ * This WelcomeView is the initial view of the app and contains the scoreboard information.
+ *  Facade design pattern is used to store and load data on the scoreboard
+ */
+public class WelcomeView extends View {
 
-    String heroname = "Guest";
-    public int heroscore = 0;
+    String heroName = "Guest";
+    public int heroScore = 0;
     WelcomeActivity activity;
     Canvas canvas = null;
     Paint p;
@@ -53,8 +49,8 @@ public class WelcomeView extends View { // WelcomeView will contain the scoreboa
             }
             LoadStoreFacade loadf = LoadStoreFacade.createLoad(fos);
             Node n = loadf.load();
-            heroname = n.getNodeName();
-            heroscore = Integer.parseInt(n.getTextContent());
+            heroName = n.getNodeName();
+            heroScore = Integer.parseInt(n.getTextContent());
         }
     }
 
@@ -74,18 +70,16 @@ public class WelcomeView extends View { // WelcomeView will contain the scoreboa
         Bitmap resizebm = Bitmap.createScaledBitmap(bitmap, (int) (canvas.getWidth() * 0.5), (int)(canvas.getHeight() * 0.5), true);
         canvas.drawBitmap(resizebm, (float)(canvas.getWidth() * 0.25), (float)(canvas.getHeight() * 0.4), p);
         canvas.drawText("Hero Board", canvas.getWidth()/2, (float) (canvas.getHeight() * 0.5), p);
-        canvas.drawText(String.valueOf(heroname), canvas.getWidth()/2, (float) (canvas.getHeight() * 0.6), p);
-        canvas.drawText(String.valueOf(heroscore), canvas.getWidth()/2, (float) (canvas.getHeight() * 0.7), p);
+        canvas.drawText(String.valueOf(heroName), canvas.getWidth()/2, (float) (canvas.getHeight() * 0.6), p);
+        canvas.drawText(String.valueOf(heroScore), canvas.getWidth()/2, (float) (canvas.getHeight() * 0.7), p);
 
     }
 
     public void updateScore(String username, int finalscore) {
-        heroname = username;
-        heroscore = finalscore;
-        // save it
+        heroName = username;
+        heroScore = finalscore;
 
-
-
+        // save the score
         String dir = activity.getExternalFilesDir(null).getAbsolutePath();
         File file = new File(dir + "/scoreboard.xml");
         Log.w("File dir", file.getAbsolutePath());

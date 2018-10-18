@@ -4,47 +4,47 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class PlayereggTest {
+public class PlayerEggTest {
 
     @Test
     public void changeEgg() {
-        Playeregg playeregg = new Playeregg(null, null, 1, 2, 3, 4, true, 6, 7);
-        playeregg.changeEgg(1);
-        assertTrue(playeregg.id == 1);
-        playeregg.changeEgg(2);
-        assertTrue(playeregg.id == 2);
-        playeregg.changeEgg(3);
-        assertTrue(playeregg.id == 3);
-        playeregg.changeEgg(0);
-        assertTrue(playeregg.id == 0);
+        PlayerEgg playerEgg = new PlayerEgg(null, null, 1, 2, 3, 4, true, 6, 7);
+        playerEgg.changeEgg(1);
+        assertTrue(playerEgg.id == 1);
+        playerEgg.changeEgg(2);
+        assertTrue(playerEgg.id == 2);
+        playerEgg.changeEgg(3);
+        assertTrue(playerEgg.id == 3);
+        playerEgg.changeEgg(0);
+        assertTrue(playerEgg.id == 0);
 
     }
 
     @Test
     public void pressed() {
-        Playeregg playeregg = new Playeregg(null, null, 1, 2, 3, 4, true, 6, 7);
-        playeregg.pressed(1);
-        assertTrue(playeregg.pointerid == 1);
-        assertTrue(playeregg.ispress);
-        playeregg.pressed(2); // it will not change as long as ispressed flag is true. (make the program robust)
-        assertTrue(playeregg.pointerid == 1);
-        assertTrue(playeregg.ispress);
+        PlayerEgg playerEgg = new PlayerEgg(null, null, 1, 2, 3, 4, true, 6, 7);
+        playerEgg.pressed(1);
+        assertTrue(playerEgg.pointerId == 1);
+        assertTrue(playerEgg.isPress);
+        playerEgg.pressed(2); // it will not change as long as ispressed flag is true. (make the program robust)
+        assertTrue(playerEgg.pointerId == 1);
+        assertTrue(playerEgg.isPress);
     }
 
     @Test
     public void unpressed() {
-        Playeregg playeregg = new Playeregg(null, null, 1, 2, 3, 4, true, 6, 7);
-        playeregg.pressed(1);
-        assertTrue(playeregg.pointerid == 1);
-        assertTrue(playeregg.ispress);
-        playeregg.pressed(2); // it will not change as long as ispressed flag is true. (make the program robust)
-        assertTrue(playeregg.pointerid == 1);
-        assertTrue(playeregg.ispress);
-        playeregg.unpressed(2); // if find the id does not match, then nothing will change
-        assertTrue(playeregg.pointerid == 1);
-        playeregg.unpressed(1);
-        assertTrue(playeregg.pointerid == -1);
-        assertTrue(!playeregg.ispress);
+        PlayerEgg playerEgg = new PlayerEgg(null, null, 1, 2, 3, 4, true, 6, 7);
+        playerEgg.pressed(1);
+        assertTrue(playerEgg.pointerId == 1);
+        assertTrue(playerEgg.isPress);
+        playerEgg.pressed(2); // it will not change as long as ispressed flag is true. (make the program robust)
+        assertTrue(playerEgg.pointerId == 1);
+        assertTrue(playerEgg.isPress);
+        playerEgg.unpressed(2); // if find the id does not match, then nothing will change
+        assertTrue(playerEgg.pointerId == 1);
+        playerEgg.unpressed(1);
+        assertTrue(playerEgg.pointerId == -1);
+        assertTrue(!playerEgg.isPress);
 
     }
 }

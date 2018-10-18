@@ -1,6 +1,9 @@
 package anu.comp2100.teamgg.god_of_hand;
 /**
  * @author COMP2100 TeamGG
+ *  The Playeregg is the core of the game God of Hand
+ *  The status of the eggs can be changed according to the prop they touch
+ *  The eggs can also response to the touch motion on the screen
  */
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,16 +15,18 @@ import android.util.AttributeSet;
 
 import java.lang.ref.WeakReference;
 
-public class Playeregg extends Item {
+public class PlayerEgg extends Item {
     boolean left;
     float screenWidth;
-    int id = 0; // 1 for diamondegg , 2 for goldenegg , 3 for centuryegg
+    // The id indicates the status of current egg:
+    // 1 for diamondegg , 2 for goldenegg , 3 for centuryegg
+    int id = 0;
     Bitmap egg;
     Bitmap hand;
-    int pointerid = -1;
-    boolean ispress = false;
+    int pointerId = -1;
+    boolean isPress = false;
     WeakReference<Context> context;
-    public Playeregg(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, boolean left, int col, float screenWidth) {
+    public PlayerEgg(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, boolean left, int col, float screenWidth) {
         super(context, attrs, x, y, width, length, col);
         this.context = new WeakReference<>(context);
         this.left = left;
@@ -36,6 +41,7 @@ public class Playeregg extends Item {
         }
     }
 
+    // Change the status of egg if the egg touch a prop
     public void changeEgg(int id) {
         if (this.context.get() != null) {
             switch (id) {
@@ -69,8 +75,9 @@ public class Playeregg extends Item {
         }
     }
 
+    // When the egg is pressed, it will response according to its status
     public void pressed(int id){
-        if (!ispress) {
+        if (!isPress) {
             if (this.left){
                 this.x = this.x - screenWidth/4;
                 this.col = 0;
@@ -78,13 +85,13 @@ public class Playeregg extends Item {
                 this.x = this.x + screenWidth/4;
                 this.col = 3;
             }
-            ispress = true;
-            pointerid = id;
+            isPress = true;
+            pointerId = id;
         }
     }
-
+    // When a pressed egg is released, it will make response as well
     public void unpressed(int id){
-        if (id == pointerid && ispress) {
+        if (id == pointerId && isPress) {
             if (this.left){
                 this.x = this.x + screenWidth/4;
                 this.col = 1;
@@ -92,8 +99,8 @@ public class Playeregg extends Item {
                 this.x = this.x - screenWidth/4;
                 this.col = 2;
             }
-            pointerid = -1;
-            ispress = false;
+            pointerId = -1;
+            isPress = false;
         }
     }
 
