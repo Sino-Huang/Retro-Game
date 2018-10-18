@@ -1,6 +1,8 @@
 package anu.comp2100.teamgg.god_of_hand;
 /**
  * @author COMP2100 TeamGG
+ *  In LoadStoreFacade, we used facade design pattern to simplify the API and reduece dependency between classes.
+ *  Meanwhile, factory design pattern is used as well.
  */
 
 import org.w3c.dom.Document;

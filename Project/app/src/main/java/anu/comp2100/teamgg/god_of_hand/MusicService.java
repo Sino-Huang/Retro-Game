@@ -1,6 +1,7 @@
 package anu.comp2100.teamgg.god_of_hand;
 /**
  * @author COMP2100 TeamGG
+ *  MusicService is for the background music of the game.
  */
 import android.app.Service;
 import android.content.Intent;

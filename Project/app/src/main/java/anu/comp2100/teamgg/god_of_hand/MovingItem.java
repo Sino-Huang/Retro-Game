@@ -1,6 +1,9 @@
 package anu.comp2100.teamgg.god_of_hand;
 /**
  * @author COMP2100 TeamGG
+ * MovingItem is the item that going cross the screen. And there are totally 4 types of them and each has a particular effect when touching the egg:
+ * stones can terminate the game excepte for when the egg is in invincible status; diamond egg turn the egg to invincible status;
+ *  golden egg can trible the score; and century egg will reverse the operations of touching the egg..
  */
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,7 +19,9 @@ public class MovingItem extends Item implements Observer{
 
     Bitmap stoneImage;
     float screenHeight;
-    int id;// 0 for stones, 1 for diamondegg item, 2 for goldenegg item, 3 for centuryegg item
+    // id is used for identifying the MovingItem:
+    // 0 for stones, 1 for diamondegg, 2 for goldenegg, and 3 for centuryegg.
+    int id;
     WeakReference<Context> wr;
     @Nullable AttributeSet attrs;
     public MovingItem(Context context, @Nullable AttributeSet attrs, float x, float y, float width, float length, int col, float screenHeight){
@@ -43,9 +48,10 @@ public class MovingItem extends Item implements Observer{
     }
 
     @Override
+    // match the screen size
     public void run() {
         this.y += screenHeight/50;
-    }// match the screen size
+    }
 
     @Override
     public void itemDraw(Canvas c, Paint p) {

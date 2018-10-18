@@ -1,6 +1,7 @@
 package anu.comp2100.teamgg.god_of_hand;
 /**
  * @author COMP2100 TeamGG
+ *  Item is a basic class that be extended to reduce redundant code.
  */
 import android.content.Context;
 import android.graphics.Canvas;

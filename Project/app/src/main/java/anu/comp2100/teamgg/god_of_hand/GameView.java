@@ -19,7 +19,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     Handler timer;
     float screenHeight;
     float screenWidth;
-    MovingItemsObservable movingitems;
+    MovingItems movingitems;
     GameActivity activity;
     Paint p;
     int runCount = 0;
@@ -43,7 +43,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         rightEgg = new PlayerEgg(thecon.get(), attrs, screenWidth / 2 + 30, 14 * screenHeight / 16, screenHeight / 8, screenHeight / 8, false, 2, screenWidth);
         //System.out.println(screenWidth);
         timer = new Handler();
-        movingitems = new MovingItemsObservable(screenHeight, screenWidth);
+        movingitems = new MovingItems(screenHeight, screenWidth);
         movingitems.registerObservers(new MovingItem(thecon.get(), attrs, 30, 0, screenWidth / 8, screenHeight / 16, 0, screenHeight));
         movingitems.registerObservers(new MovingItem(thecon.get(), attrs, 4 * screenWidth / 8 + 30, 0, screenWidth / 8, screenHeight / 16, 2, screenHeight));
         movingitems.registerObservers(new MovingItem(thecon.get(), attrs, 2 * screenWidth / 8 + 30, screenHeight / 2, screenWidth / 8, screenHeight / 16, 1, screenHeight));
@@ -85,7 +85,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
         }
 
     }
-
+    //
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         int pointerid = motionEvent.getPointerId(motionEvent.getActionIndex());
@@ -125,7 +125,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     @Override
     public void run() {
         // update all parts
-        // decrese effect Remaining time
+        // decrease effect Remaining time
         if (effectRemaining > 0) {
             effectRemaining--;
         }
@@ -154,7 +154,7 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
                         break;
                     }
                 }
-            } else if (rightEgg.col == getItem.col) { // check right egg
+            } else if (rightEgg.col == getItem.col) {   // check right egg
                 if (Math.abs(getItem.y - rightEgg.y) < 20) {
                     if (leftEgg.id != 1 && getItem.id == 0) {
                         activity.endGame();

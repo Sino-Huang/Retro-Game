@@ -1,6 +1,8 @@
 package anu.comp2100.teamgg.god_of_hand;
 /**
  * @author COMP2100 TeamGG
+ *  MoviingItems is a subject that can register its observer and inform them once needed.
+ *  For this part we use observer pattern to decrease coupling.
  */
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,24 +12,26 @@ import android.util.AttributeSet;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-public class MovingItemsObservable {
+public class MovingItems {
 
     float screenHeight;
     float screenWidth;
 
     ArrayList<Observer> observerList;
-    public MovingItemsObservable(float screenHeight, float screenWidth){
+    public MovingItems(float screenHeight, float screenWidth){
         observerList = new ArrayList<>();
         this.screenHeight = screenHeight;
         this.screenWidth = screenWidth;
 
     }
+    // Register an observer
     public void registerObservers(Observer s){
         observerList.add(s);
     }
 
-    public void notifyObserversrun(){   // use observer pattern
-        MovingItemsObservable newStone = new MovingItemsObservable(screenHeight, screenWidth);
+    // use observer pattern and this method is to notify all registered observer
+    public void notifyObserversrun(){
+        MovingItems newStone = new MovingItems(screenHeight, screenWidth);
         float miny = screenHeight;
         for (Observer s : this.observerList) {
             if ( ((MovingItem)s).y < miny) {
@@ -36,7 +40,8 @@ public class MovingItemsObservable {
         }
         for (int i = 0; i < this.observerList.size(); i++) {
             this.observerList.get(i).run();
-            if (((MovingItem)this.observerList.get(i)).y > screenHeight) {   // when a stone go beyond the screen, we need to remove that stone and generate a new stone
+            // when a movingItem goes beyond the screen, we need to remove that and generate a new item randomly
+            if (((MovingItem)this.observerList.get(i)).y > screenHeight) {
                 WeakReference<Context> context = ((MovingItem)this.observerList.get(i)).context;
                 AttributeSet attrs = ((MovingItem)this.observerList.get(i)).attrs;
                 float w = screenWidth;
@@ -53,7 +58,7 @@ public class MovingItemsObservable {
         this.observerList = newStone.observerList;
     }
 
-
+    // For the drawing we also use observer design pattern
     public void notifyObserversdraw(Canvas c, Paint p) {
         for (Observer s : this.observerList){
             s.itemDraw(c, p);
