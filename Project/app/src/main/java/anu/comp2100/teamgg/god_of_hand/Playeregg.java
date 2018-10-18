@@ -15,7 +15,7 @@ import java.lang.ref.WeakReference;
 public class Playeregg extends Item {
     boolean left;
     float screenWidth;
-    int ID = 0; // 1 for diamondegg , 2 for goldenegg , 3 for centuryegg
+    int id = 0; // 1 for diamondegg , 2 for goldenegg , 3 for centuryegg
     Bitmap egg;
     Bitmap hand;
     int pointerid = -1;
@@ -41,23 +41,23 @@ public class Playeregg extends Item {
             switch (id) {
                 case 0:
                     this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.egg);
-                    ID = 0;
+                    this.id = 0;
                     break;
                 case 1:
                     this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.diamondegg);
-                    ID = 1;
+                    this.id = 1;
                     break;
                 case 2:
                     this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.goldenegg);
-                    ID = 2;
+                    this.id = 2;
                     break;
                 case 3:
                     this.egg = BitmapFactory.decodeResource(this.context.get().getResources(), R.drawable.centuryegg);
-                    ID = 3;
+                    this.id = 3;
                     break;
             }
         }
-        ID = id;
+        this.id = id;
     }
     public void itemDraw(Canvas canvas, Paint paint){
 

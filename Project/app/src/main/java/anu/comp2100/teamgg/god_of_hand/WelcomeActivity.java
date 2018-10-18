@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 public class WelcomeActivity extends AppCompatActivity {
     String username;
-    float Width;
-    float Hight;
+    float width;
+    float height;
     WelcomeView view;
     Intent serv = null;
 
@@ -39,9 +39,8 @@ public class WelcomeActivity extends AppCompatActivity {
         startService(serv);
 
         Intent intent = new Intent(this, GameActivity.class);
-
-        intent.putExtra("Width", Width);
-        intent.putExtra("Hight", Hight);
+        intent.putExtra("Width", width);
+        intent.putExtra("Height", height);
         intent.putExtra("Username", username);
         intent.putExtra("HighestScore", this.view.heroscore);
         startActivityForResult(intent, 0);

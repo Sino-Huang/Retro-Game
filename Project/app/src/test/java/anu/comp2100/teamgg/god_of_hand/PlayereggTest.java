@@ -10,13 +10,13 @@ public class PlayereggTest {
     public void changeEgg() {
         Playeregg playeregg = new Playeregg(null, null, 1, 2, 3, 4, true, 6, 7);
         playeregg.changeEgg(1);
-        assertTrue(playeregg.ID == 1);
+        assertTrue(playeregg.id == 1);
         playeregg.changeEgg(2);
-        assertTrue(playeregg.ID == 2);
+        assertTrue(playeregg.id == 2);
         playeregg.changeEgg(3);
-        assertTrue(playeregg.ID == 3);
+        assertTrue(playeregg.id == 3);
         playeregg.changeEgg(0);
-        assertTrue(playeregg.ID == 0);
+        assertTrue(playeregg.id == 0);
 
     }
 
