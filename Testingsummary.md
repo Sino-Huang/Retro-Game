@@ -9,7 +9,7 @@ The result of the testing is shown below
 
 ![](./TestingRes/whitetesting.png)
 
-# Black Box testing 
+# Black Box Scenario testing 
 In black box testing, we mainly want to test that all the game features are implemented successfully. After goingthrough a bunch of manual testing by all members of the team, the team fix the bugs and ensure that all game features work well.  
 
 ## ChangeEggs when collecting egg props 
