@@ -66,6 +66,9 @@ public class WelcomeView extends View {
 
         // draw scoreboard
         Resources res = getResources();
+        Bitmap background = BitmapFactory.decodeResource(res, R.drawable.background);
+        Bitmap resizebg = Bitmap.createScaledBitmap(background, canvas.getWidth(), canvas.getHeight(), true);
+        canvas.drawBitmap(resizebg, 0, 0, p);
         Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.score_board);
         Bitmap resizebm = Bitmap.createScaledBitmap(bitmap, (int) (canvas.getWidth() * 0.5), (int)(canvas.getHeight() * 0.5), true);
         canvas.drawBitmap(resizebm, (float)(canvas.getWidth() * 0.25), (float)(canvas.getHeight() * 0.4), p);

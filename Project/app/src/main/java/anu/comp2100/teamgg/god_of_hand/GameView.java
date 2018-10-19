@@ -5,6 +5,9 @@ package anu.comp2100.teamgg.god_of_hand;
  *  Multiple touch on the screen can be detected and the remaining time for special status of eggs is counted.
  */
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
@@ -57,6 +60,10 @@ public class GameView extends View implements Runnable, View.OnTouchListener{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        Resources res = getResources();
+        Bitmap background = BitmapFactory.decodeResource(res, R.drawable.background);
+        Bitmap resizebg = Bitmap.createScaledBitmap(background, canvas.getWidth(), canvas.getHeight(), true);
+        canvas.drawBitmap(resizebg, 0, 0, p);
         for (int i = 0; i < 4; i++) {
             canvas.drawLine(canvas.getWidth()/ 4 * (i + 1), 0, canvas.getWidth()/ 4 * (i + 1), canvas.getHeight(), p);
         }
